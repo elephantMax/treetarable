@@ -1,0 +1,17 @@
+{
+  "name": "treetarable",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsup",
+    "dev": "npx tsup --watch --onSuccess 'node dist/index.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  }
+}
