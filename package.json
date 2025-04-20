@@ -1,17 +1,32 @@
 {
   "name": "treetarable",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "description": "Lightweight and flexible library for working with binary tree data structures",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elephantMax/treetarable"
+  },
+  "homepage": "https://github.com/elephantMax/treetarable#readme",
+  "bugs": {
+    "url": "https://github.com/elephantMax/treetarable/issues"
+  },
   "scripts": {
     "build": "npx tsup",
-    "dev": "npx tsup --watch --onSuccess 'node dist/index.js'"
+    "dev": "npx tsup --watch --onSuccess 'node dist/index.js'",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
+    "@types/node": "^22.14.1",
     "tsup": "^8.4.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
   }
 }
