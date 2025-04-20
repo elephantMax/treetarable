@@ -1,5 +1,1 @@
-function main() {
-  console.log("main runs");
-}
-
-main();
+export * from "./BinaryTree";
