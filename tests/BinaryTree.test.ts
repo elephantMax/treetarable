@@ -112,4 +112,30 @@ describe("BinaryTree", () => {
 
     expect(values).toEqual([1, 2, 5]);
   });
+
+  test("should calculate the sum of tree values using reduce method without initialValue", () => {
+    const root = new BinaryTree(1);
+    root.left = new BinaryTree(2);
+    root.right = new BinaryTree(3);
+    root.left.left = new BinaryTree(4);
+    root.left.right = new BinaryTree(5);
+
+    const sumNode = root.reduce(
+      (prev, curr) => new BinaryTree(prev.value + curr.value)
+    );
+
+    expect(sumNode).toEqual(new BinaryTree(15));
+  });
+
+  test("should calculate the sum of tree values using reduce method with initialValue", () => {
+    const root = new BinaryTree(1);
+    root.left = new BinaryTree(2);
+    root.right = new BinaryTree(3);
+    root.left.left = new BinaryTree(4);
+    root.left.right = new BinaryTree(5);
+
+    const sum = root.reduce((prev, curr) => prev + curr.value, 0);
+
+    expect(sum).toEqual(15);
+  });
 });

@@ -158,4 +158,35 @@ export class BinaryTree<T> {
     }
     return null;
   }
+
+  reduce(
+    callbackfn: (
+      previousValue: BinaryTree<T>,
+      currentValue: BinaryTree<T>
+    ) => BinaryTree<T>
+  ): BinaryTree<T>;
+  reduce(
+    callbackfn: (
+      previousValue: BinaryTree<T>,
+      currentValue: BinaryTree<T>
+    ) => BinaryTree<T>,
+    initalValue: BinaryTree<T>
+  ): BinaryTree<T>;
+  reduce<R>(
+    callbackfn: (previousValue: R, currentValue: BinaryTree<T>) => R,
+    initalValue: R
+  ): R;
+  reduce<R = BinaryTree<T>>(
+    callback: (previousValue: R, currentValue: BinaryTree<T>) => R,
+    initialValue?: R
+  ): R {
+    let value = initialValue;
+
+    for (const node of this) {
+      value =
+        typeof value === "undefined" ? (node as R) : callback(value, node);
+    }
+
+    return value as R;
+  }
 }
