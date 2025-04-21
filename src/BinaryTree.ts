@@ -158,4 +158,47 @@ export class BinaryTree<T> {
     }
     return null;
   }
+
+  /**
+   * Reduces the binary tree to a single value by applying a callback function
+   * to each node in the tree, in depth-first order.
+   *
+   * @typeParam R - The type of the accumulated result.
+   * @param callback - A function that is called for each node in the tree. It receives
+   * the accumulated value and the current node as arguments, and returns the updated
+   * accumulated value.
+   * @param initialValue - An optional initial value to start the reduction. If not provided,
+   * the first node in the iteration will be used as the initial value.
+   * @returns The final accumulated value after processing all nodes in the tree.
+   */
+  reduce(
+    callbackfn: (
+      previousValue: BinaryTree<T>,
+      currentValue: BinaryTree<T>
+    ) => BinaryTree<T>
+  ): BinaryTree<T>;
+  reduce(
+    callbackfn: (
+      previousValue: BinaryTree<T>,
+      currentValue: BinaryTree<T>
+    ) => BinaryTree<T>,
+    initalValue: BinaryTree<T>
+  ): BinaryTree<T>;
+  reduce<R>(
+    callbackfn: (previousValue: R, currentValue: BinaryTree<T>) => R,
+    initalValue: R
+  ): R;
+  reduce<R = BinaryTree<T>>(
+    callback: (previousValue: R, currentValue: BinaryTree<T>) => R,
+    initialValue?: R
+  ): R {
+    let value = initialValue;
+
+    for (const node of this) {
+      value =
+        typeof value === "undefined" ? (node as R) : callback(value, node);
+    }
+
+    return value as R;
+  }
 }
