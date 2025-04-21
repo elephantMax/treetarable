@@ -1,4 +1,4 @@
-name: Run Tests on Pull Request
+name: Run Tests and Lint on Pull Request
 
 on:
   pull_request:
@@ -23,6 +23,10 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      # Run lint
+      - name: Run ESLint
+        run: npm run lint
 
       # Run tests
       - name: Run tests
