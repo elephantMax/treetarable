@@ -2,10 +2,12 @@
 
 Treetarable is a lightweight and flexible library for working with binary tree data structures. It provides an elegant API for traversing, manipulating, and querying binary trees using modern JavaScript features like generators and iterators.
 
+> **Note**: This library is currently in development. Features and APIs may change in future releases.
+
 ## Features
 
 - **Generator-based traversal**: Supports depth-first, breadth-first, pre-order, post-order, and default (in-order) traversal.
-- **Tree manipulation**: Map and flatten tree nodes with ease.
+- **Tree manipulation**: Map, flatten and reduce tree nodes with ease.
 - **Node querying**: Find nodes or paths based on custom predicates.
 - **Customizable iteration**: Use built-in iterators or define your own.
 
@@ -84,6 +86,13 @@ const flatNodes = root.flat();
 console.log(flatNodes.map((node) => node.value)); // [4, 2, 5, 1, 3]
 ```
 
+#### Reducing the Tree
+
+```typescript
+const sum = root.reduce((acc, node) => acc + node.value, 0);
+console.log(sum); // 15 (sum of all node values)
+```
+
 ### Querying the Tree
 
 #### Finding a Node
@@ -130,6 +139,12 @@ npm run dev
 
 ```bash
 npm run test
+```
+
+### Run Lint
+
+```bash
+npm run lint
 ```
 
 ## Contributing
