@@ -1,26 +1,37 @@
 {
   "name": "treetarable",
-  "version": "1.0.2",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "version": "1.0.3",
   "license": "MIT",
   "description": "Lightweight and flexible library for working with binary tree data structures",
   "repository": {
     "type": "git",
     "url": "https://github.com/elephantMax/treetarable"
   },
+  "type": "module",
   "homepage": "https://github.com/elephantMax/treetarable#readme",
   "bugs": {
     "url": "https://github.com/elephantMax/treetarable/issues"
   },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "build": "npx tsup",
-    "dev": "npx tsup --watch --onSuccess 'node dist/index.js'",
+    "lint": "eslint --cache .",
+    "lint:fix": "npm run lint --fix",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
     "test": "vitest",
-    "lint": "npx eslint src"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --cache --write .",
+    "release": "bumpp && npm publish",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "tree",
@@ -33,12 +44,19 @@
   ],
   "author": "",
   "devDependencies": {
-    "@eslint/js": "^9.25.1",
-    "@types/node": "^22.14.1",
-    "eslint": "^9.25.1",
-    "tsup": "^8.4.0",
+    "@sxzz/eslint-config": "^6.2.0",
+    "@sxzz/prettier-config": "^2.2.1",
+    "@types/node": "^22.15.3",
+    "bumpp": "^10.1.0",
+    "eslint": "^9.26.0",
+    "prettier": "^3.5.3",
+    "tsdown": "^0.10.2",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.31.0",
-    "vitest": "^3.1.1"
-  }
+    "vitest": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "prettier": "@sxzz/prettier-config"
 }

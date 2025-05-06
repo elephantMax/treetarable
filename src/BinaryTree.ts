@@ -1,15 +1,15 @@
 export class BinaryTree<T> {
-  left: BinaryTree<T> | null;
-  right: BinaryTree<T> | null;
+  left: BinaryTree<T> | null
+  right: BinaryTree<T> | null
 
   /**
    * Creates a new BinaryTree node.
    * @param value - The value of the node.
    */
   constructor(readonly value: T) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
+    this.value = value
+    this.left = null
+    this.right = null
   }
 
   /**
@@ -17,7 +17,7 @@ export class BinaryTree<T> {
    * @returns A generator that yields nodes in depth-first order.
    */
   *[Symbol.iterator](): Generator<BinaryTree<T>> {
-    yield* this.dfIterator();
+    yield* this.dfIterator()
   }
 
   /**
@@ -25,9 +25,9 @@ export class BinaryTree<T> {
    * @returns A generator that yields nodes in depth-first order.
    */
   *dfIterator(): Generator<BinaryTree<T>> {
-    if (this.left) yield* this.left.dfIterator();
-    yield this;
-    if (this.right) yield* this.right.dfIterator();
+    if (this.left) yield* this.left.dfIterator()
+    yield this
+    if (this.right) yield* this.right.dfIterator()
   }
 
   /**
@@ -35,12 +35,12 @@ export class BinaryTree<T> {
    * @returns A generator that yields nodes in breadth-first order.
    */
   *bfIterator(): Generator<BinaryTree<T>> {
-    const queue: BinaryTree<T>[] = [this];
+    const queue: BinaryTree<T>[] = [this]
     while (queue.length) {
-      const node = queue.shift()!;
-      yield node;
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+      const node = queue.shift()!
+      yield node
+      if (node.left) queue.push(node.left)
+      if (node.right) queue.push(node.right)
     }
   }
 
@@ -49,9 +49,9 @@ export class BinaryTree<T> {
    * @returns A generator that yields nodes in post-order.
    */
   *postOrderIterator(): Generator<BinaryTree<T>> {
-    if (this.left) yield* this.left.postOrderIterator();
-    if (this.right) yield* this.right.postOrderIterator();
-    yield this;
+    if (this.left) yield* this.left.postOrderIterator()
+    if (this.right) yield* this.right.postOrderIterator()
+    yield this
   }
 
   /**
@@ -59,9 +59,9 @@ export class BinaryTree<T> {
    * @returns A generator that yields nodes in pre-order.
    */
   *preOrderIterator(): Generator<BinaryTree<T>> {
-    yield this;
-    if (this.left) yield* this.left.preOrderIterator();
-    if (this.right) yield* this.right.preOrderIterator();
+    yield this
+    if (this.left) yield* this.left.preOrderIterator()
+    if (this.right) yield* this.right.preOrderIterator()
   }
 
   /**
@@ -70,10 +70,10 @@ export class BinaryTree<T> {
    * @returns A new binary tree with transformed values.
    */
   map<B>(callback: (value: T) => B): BinaryTree<B> {
-    const node = new BinaryTree(callback(this.value));
-    if (this.left) node.left = this.left.map(callback);
-    if (this.right) node.right = this.right.map(callback);
-    return node;
+    const node = new BinaryTree(callback(this.value))
+    if (this.left) node.left = this.left.map(callback)
+    if (this.right) node.right = this.right.map(callback)
+    return node
   }
 
   /**
@@ -84,12 +84,12 @@ export class BinaryTree<T> {
    */
   find(
     predicate: (node: BinaryTree<T>) => boolean,
-    iterator: Generator<BinaryTree<T>> = this[Symbol.iterator]()
+    iterator: Generator<BinaryTree<T>> = this[Symbol.iterator](),
   ): BinaryTree<T> | null {
     for (const node of iterator) {
-      if (predicate(node)) return node;
+      if (predicate(node)) return node
     }
-    return null;
+    return null
   }
 
   /**
@@ -99,10 +99,10 @@ export class BinaryTree<T> {
    */
   forEach(
     callback: (node: BinaryTree<T>) => void,
-    iterator: Generator<BinaryTree<T>> = this[Symbol.iterator]()
+    iterator: Generator<BinaryTree<T>> = this[Symbol.iterator](),
   ): void {
     for (const node of iterator) {
-      callback(node);
+      callback(node)
     }
   }
 
@@ -112,13 +112,13 @@ export class BinaryTree<T> {
    * @returns An array of nodes in the binary tree.
    */
   flat(
-    iterator: Generator<BinaryTree<T>> = this[Symbol.iterator]()
+    iterator: Generator<BinaryTree<T>> = this[Symbol.iterator](),
   ): BinaryTree<T>[] {
-    const res: BinaryTree<T>[] = [];
+    const res: BinaryTree<T>[] = []
     for (const node of iterator) {
-      res.push(node);
+      res.push(node)
     }
-    return res;
+    return res
   }
 
   /**
@@ -127,12 +127,12 @@ export class BinaryTree<T> {
    * @returns A new binary tree containing only the nodes that satisfy the predicate, or null if none.
    */
   filter(predicate: (node: BinaryTree<T>) => boolean): BinaryTree<T> | null {
-    const res = predicate(this);
-    if (!res) return null;
-    const newNode = new BinaryTree(this.value);
-    newNode.left = this.left?.filter(predicate) ?? null;
-    newNode.right = this.right?.filter(predicate) ?? null;
-    return newNode;
+    const res = predicate(this)
+    if (!res) return null
+    const newNode = new BinaryTree(this.value)
+    newNode.left = this.left?.filter(predicate) ?? null
+    newNode.right = this.right?.filter(predicate) ?? null
+    return newNode
   }
 
   /**
@@ -141,22 +141,22 @@ export class BinaryTree<T> {
    * @returns A binary tree representing the path to the node, or null if not found.
    */
   getPathOfNode(
-    predicate: (node: BinaryTree<T>) => boolean
+    predicate: (node: BinaryTree<T>) => boolean,
   ): BinaryTree<T> | null {
-    if (predicate(this)) return new BinaryTree(this.value);
-    const leftPath = this.left?.getPathOfNode(predicate) ?? null;
+    if (predicate(this)) return new BinaryTree(this.value)
+    const leftPath = this.left?.getPathOfNode(predicate) ?? null
     if (leftPath) {
-      const path = new BinaryTree(this.value);
-      path.left = leftPath;
-      return path;
+      const path = new BinaryTree(this.value)
+      path.left = leftPath
+      return path
     }
-    const rightPath = this.right?.getPathOfNode(predicate) ?? null;
+    const rightPath = this.right?.getPathOfNode(predicate) ?? null
     if (rightPath) {
-      const path = new BinaryTree(this.value);
-      path.right = rightPath;
-      return path;
+      const path = new BinaryTree(this.value)
+      path.right = rightPath
+      return path
     }
-    return null;
+    return null
   }
 
   /**
@@ -174,31 +174,30 @@ export class BinaryTree<T> {
   reduce(
     callbackfn: (
       previousValue: BinaryTree<T>,
-      currentValue: BinaryTree<T>
-    ) => BinaryTree<T>
-  ): BinaryTree<T>;
+      currentValue: BinaryTree<T>,
+    ) => BinaryTree<T>,
+  ): BinaryTree<T>
   reduce(
     callbackfn: (
       previousValue: BinaryTree<T>,
-      currentValue: BinaryTree<T>
+      currentValue: BinaryTree<T>,
     ) => BinaryTree<T>,
-    initalValue: BinaryTree<T>
-  ): BinaryTree<T>;
+    initalValue: BinaryTree<T>,
+  ): BinaryTree<T>
   reduce<R>(
     callbackfn: (previousValue: R, currentValue: BinaryTree<T>) => R,
-    initalValue: R
-  ): R;
+    initalValue: R,
+  ): R
   reduce<R = BinaryTree<T>>(
     callback: (previousValue: R, currentValue: BinaryTree<T>) => R,
-    initialValue?: R
+    initialValue?: R,
   ): R {
-    let value = initialValue;
+    let value = initialValue
 
     for (const node of this) {
-      value =
-        typeof value === "undefined" ? (node as R) : callback(value, node);
+      value = typeof value === 'undefined' ? (node as R) : callback(value, node)
     }
 
-    return value as R;
+    return value as R
   }
 }
