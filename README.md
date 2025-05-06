@@ -24,14 +24,14 @@ npm install treetarable
 ### Creating a Binary Tree
 
 ```typescript
-import {BinaryTree} from "treetarable";
+import { BinaryTree } from 'treetarable'
 
 // Create a binary tree
-const root = new BinaryTree(1);
-root.left = new BinaryTree(2);
-root.right = new BinaryTree(3);
-root.left.left = new BinaryTree(4);
-root.left.right = new BinaryTree(5);
+const root = new BinaryTree(1)
+root.left = new BinaryTree(2)
+root.right = new BinaryTree(3)
+root.left.left = new BinaryTree(4)
+root.left.right = new BinaryTree(5)
 ```
 
 ### Traversing the Tree
@@ -40,7 +40,7 @@ root.left.right = new BinaryTree(5);
 
 ```typescript
 for (const node of root) {
-  console.log(node.value); // 4, 2, 5, 1, 3
+  console.log(node.value) // 4, 2, 5, 1, 3
 }
 ```
 
@@ -48,7 +48,7 @@ for (const node of root) {
 
 ```typescript
 for (const node of root.bfIterator()) {
-  console.log(node.value); // 1, 2, 3, 4, 5
+  console.log(node.value) // 1, 2, 3, 4, 5
 }
 ```
 
@@ -56,7 +56,7 @@ for (const node of root.bfIterator()) {
 
 ```typescript
 for (const node of root.preOrderIterator()) {
-  console.log(node.value); // 1, 2, 4, 5, 3
+  console.log(node.value) // 1, 2, 4, 5, 3
 }
 ```
 
@@ -64,7 +64,7 @@ for (const node of root.preOrderIterator()) {
 
 ```typescript
 for (const node of root.postOrderIterator()) {
-  console.log(node.value); // 4, 5, 2, 3, 1
+  console.log(node.value) // 4, 5, 2, 3, 1
 }
 ```
 
@@ -73,24 +73,24 @@ for (const node of root.postOrderIterator()) {
 #### Mapping Node Values
 
 ```typescript
-const newTree = root.map((value) => value * 2);
+const newTree = root.map((value) => value * 2)
 for (const node of newTree) {
-  console.log(node.value); // 8, 4, 10, 2, 6
+  console.log(node.value) // 8, 4, 10, 2, 6
 }
 ```
 
 #### Flattening the Tree
 
 ```typescript
-const flatNodes = root.flat();
-console.log(flatNodes.map((node) => node.value)); // [4, 2, 5, 1, 3]
+const flatNodes = root.flat()
+console.log(flatNodes.map((node) => node.value)) // [4, 2, 5, 1, 3]
 ```
 
 #### Reducing the Tree
 
 ```typescript
-const sum = root.reduce((acc, node) => acc + node.value, 0);
-console.log(sum); // 15 (sum of all node values)
+const sum = root.reduce((acc, node) => acc + node.value, 0)
+console.log(sum) // 15 (sum of all node values)
 ```
 
 ### Querying the Tree
@@ -98,17 +98,17 @@ console.log(sum); // 15 (sum of all node values)
 #### Finding a Node
 
 ```typescript
-const foundNode = root.find((node) => node.value === 5);
-console.log(foundNode?.value); // 5
+const foundNode = root.find((node) => node.value === 5)
+console.log(foundNode?.value) // 5
 ```
 
 #### Getting the Path to a Node
 
 ```typescript
-const path = root.getPathOfNode((node) => node.value === 5);
+const path = root.getPathOfNode((node) => node.value === 5)
 if (path) {
   for (const node of path.preOrderIterator()) {
-    console.log(node.value); // 1, 2, 5
+    console.log(node.value) // 1, 2, 5
   }
 }
 ```
@@ -117,8 +117,8 @@ if (path) {
 
 ```typescript
 root.forEach((node) => {
-  console.log(node.value); // 4, 2, 5, 1, 3
-});
+  console.log(node.value) // 4, 2, 5, 1, 3
+})
 ```
 
 ## Available NPM Commands
