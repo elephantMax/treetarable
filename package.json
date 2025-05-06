@@ -1,6 +1,6 @@
 {
   "name": "treetarable",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "description": "Lightweight and flexible library for working with binary tree data structures",
   "repository": {
